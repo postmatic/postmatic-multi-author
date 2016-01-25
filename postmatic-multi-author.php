@@ -104,6 +104,6 @@ class Postmatic_Multi_Author {
 			return $title;
 		}
 
-		return sprintf( 'Subscribe to new posts by %s.', $instance['list']->get_wp_user()->display_name );
+		return sprintf( 'Subscribe to new posts by %s', $instance['list']->get_wp_user()->display_name );
 	}
 }
