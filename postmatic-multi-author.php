@@ -26,7 +26,13 @@
   details.
  */
 
-Postmatic_Multi_Author::get_instance()->load();
+// We should only be loaded by WordPress. Abort if called directly.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+// One hook begets another - we'll do nothing unless Postmatic is in use
+add_action( 'prompt/hooks_added', array( Postmatic_Multi_Author::get_instance(), 'add_hooks' ) );
 
 /**
  * Main Postmatic Multi-Author singleton
@@ -61,8 +67,25 @@ class Postmatic_Multi_Author {
 	/**
 	 * @since 0.1.0
 	 */
-	public function load() {
-
+	public function add_hooks() {
+		add_filter( 'prompt/subscribe_widget_object', array( $this, 'filter_subscribe_widget_object' ) );
 	}
 
+	/**
+	 * Change the subscribe widget object to post author on single post views.
+	 *
+	 * @since 0.1.0
+	 * @param object $object The current widget target object
+	 * @return object
+	 */
+	public function filter_subscribe_widget_object( $object ) {
+
+		if ( ! is_single() ) {
+			return $object;
+		}
+
+		$post = get_queried_object();
+
+		return get_user_by( 'id', $post->post_author );
+	}
 }
