@@ -69,6 +69,7 @@ class Postmatic_Multi_Author {
 	 */
 	public function add_hooks() {
 		add_filter( 'prompt/subscribe_widget_object', array( $this, 'filter_subscribe_widget_object' ) );
+		add_filter( 'widget_title', array( $this, 'filter_widget_title' ), 10, 2 );
 	}
 
 	/**
@@ -87,5 +88,22 @@ class Postmatic_Multi_Author {
 		$post = get_queried_object();
 
 		return get_user_by( 'id', $post->post_author );
+	}
+
+	/**
+	 * Change the subscribe widget title when the target list is an author.
+	 *
+	 * @since 0.1.0
+	 * @param string $title
+	 * @param array $instance
+	 * @return string
+	 */
+	public function filter_widget_title( $title, $instance ) {
+
+		if ( ! isset( $instance['list'] ) or ! $instance['list'] instanceof Prompt_User ) {
+			return $title;
+		}
+
+		return sprintf( 'Subscribe to new posts by %s.', $instance['list']->get_wp_user()->display_name );
 	}
 }
