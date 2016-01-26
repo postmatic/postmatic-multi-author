@@ -5,7 +5,7 @@
 	Description: Power up Postmatic with enhancements for multi-author blogs.
 	License: GPL2+
 	Version: 0.1.0
-	Author: Dylan Kuhn
+	Author: Postmatic
 	Author URI: https://gopostmatic.com/
 	Minimum WordPress Version Required: 3.9
 */
