@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Multi-Author for Postmatic
 	Plugin URI: http://wordpress.org/plugins/postmatic-multi-author/
-	Description: Encourage visitors to subscribe to posts by author over sitewide posts.
+	Description: Power up Postmatic with enhancements for multi-author blogs.
 	License: GPL2+
 	Version: 0.1.0
 	Author: Dylan Kuhn
