@@ -68,6 +68,7 @@ class Postmatic_Multi_Author {
 	 * @since 0.1.0
 	 */
 	public function add_hooks() {
+		add_filter( 'prompt/new_post_email/include_author', '__return_true' );
 		add_filter( 'prompt/subscribe_widget_object', array( $this, 'filter_subscribe_widget_object' ) );
 		add_filter( 'widget_title', array( $this, 'filter_widget_title' ), 10, 2 );
 	}
