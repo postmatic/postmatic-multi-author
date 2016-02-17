@@ -99,7 +99,7 @@ class Postmatic_Multi_Author {
 	 * @param array $instance
 	 * @return string
 	 */
-	public function filter_widget_title( $title, $instance ) {
+	public function filter_widget_title( $title, $instance = array() ) {
 
 		if ( ! isset( $instance['list'] ) or ! $instance['list'] instanceof Prompt_User ) {
 			return $title;
